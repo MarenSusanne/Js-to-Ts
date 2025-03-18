@@ -1,9 +1,15 @@
 import axios from "axios";
-const monsterInput = document.getElementById("monsterInput")!;
+const monsterInput = document.getElementById("monsterInput")! as HTMLInputElement;
 const searchButton = document.getElementById("searchButton")!;
 const monsterResult = document.getElementById("monsterResult")!;
+const autocompleteList = document.getElementById("autocompleteList") as HTMLDivElement;
 
-let allMonsters = [];
+let allMonsters: Monster[] = [];
+
+type Monster = {
+  name: string;
+  
+};
 
 window.onload = function() {
     axios
@@ -21,7 +27,7 @@ window.onload = function() {
     updateAutocompleteList(query);
 });
 
-function updateAutocompleteList(query) {
+function updateAutocompleteList(query : string) {
   autocompleteList.innerHTML = '';
 
   if (!query) return;
